@@ -1,1 +1,0 @@
-scp dist/webstart/tinytimetracker.* rblack@web.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/
