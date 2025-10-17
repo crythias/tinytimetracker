@@ -5,7 +5,7 @@
      Time Tracker    
      Keeps track of your time in an excel spreadsheet
                    
-     rblack                                                                
+     rblack / updated by Gerald Young 17 October 2025                                                               
      ====================================================================== -->
 <project name="Tiny Time Tracker" default="jar">
 	<description>
@@ -15,13 +15,14 @@
 	<property name="dist" value="dist"/>
 	<property name="webstart" value="dist/webstart"/>
 	<property name="classes" value="classes"/>
-	<property name="src" value="src"/>
-	<property name="lib" value="lib"/>
+	<property name="src" value="src/main/java/tracker"/>
+	<property name="lib" value="lib/"/>
 	<property name="tinytimetracker.jar" value="${dist}/tinytimetracker.jar"/>
 
 	<target name="compile" description="Compiles the java files.">
 		<mkdir dir="${classes}"/>
 		<javac srcdir="${src}"
+		 includeantruntime="false" 
          destdir="${classes}"
          excludes="**/*Test.java"
 		 debug="on">

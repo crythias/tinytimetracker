@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2' // test
+    implementation 'org.apache.poi:poi:5.4.1'         // HSSF (.xls)
+    implementation 'org.apache.poi:poi-ooxml:5.4.1'   // XSSF (.xlsx), optional
+}
+
+test {
+    useJUnitPlatform()
+}

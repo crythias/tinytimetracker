@@ -4,7 +4,10 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.CellReference;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
 
 public class TimecardSpreadsheet {
 
@@ -12,7 +15,7 @@ public class TimecardSpreadsheet {
     private HSSFWorkbook wb;
     private final File f;
     private final File tmpFile;
-    private HSSFCellStyle elapsedTimeStyle, hmsStyle;
+    private CellStyle elapsedTimeStyle, hmsStyle;
 
     private int taskColumn;
     private int totalTimeColumn;
@@ -71,10 +74,10 @@ public class TimecardSpreadsheet {
             while (cellIterator.hasNext() && (totalTimeColumn == -1 || taskColumn == -1)) {
                 HSSFCell cell = (HSSFCell) cellIterator.next();
                 if (cell.getRichStringCellValue().getString().equals(Messages.getString("Tracker.Task"))) { //$NON-NLS-1$
-                    taskColumn = cell.getCellNum();
+                    taskColumn = cell.getColumnIndex();
                     headingRow = row;
                 } else if (cell.getRichStringCellValue().getString().equals(Messages.getString("Tracker.Total"))) { //$NON-NLS-1$
-                    totalTimeColumn = cell.getCellNum();
+                    totalTimeColumn = cell.getColumnIndex();
                     headingRow = row;
                 }
             }
@@ -102,7 +105,7 @@ public class TimecardSpreadsheet {
       // find wrap style
       short numCellStyles = wb.getNumCellStyles();
       for(short i=0; i<numCellStyles; i++) {
-          HSSFCellStyle thestyle = wb.getCellStyleAt(i);
+          CellStyle thestyle = wb.getCellStyleAt(i);
           if (thestyle.getWrapText()) {
               wrapStyle = thestyle;
           }
@@ -144,9 +147,9 @@ public class TimecardSpreadsheet {
         HSSFSheet timecardSheet = wb.createSheet(Messages.getString("Tracker.Timecard")); //$NON-NLS-1$
         HSSFRow row = timecardSheet.createRow(0);
         HSSFFont boldFont = wb.createFont();
-        boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        boldFont.setBold(true);
 
-        HSSFCellStyle headerStyle = wb.createCellStyle();
+        CellStyle headerStyle = wb.createCellStyle();
         headerStyle.setFont(boldFont);
 
         timecardSheet.setDefaultColumnWidth(12);
@@ -163,9 +166,9 @@ public class TimecardSpreadsheet {
         elapsedTimeStyle = wb.createCellStyle();
         elapsedTimeStyle.setDataFormat(elapsedTimeFormatIndex);
 
-        HSSFCellStyle underlineTimeStyle = wb.createCellStyle();
+        CellStyle underlineTimeStyle = wb.createCellStyle();
         underlineTimeStyle.setDataFormat(elapsedTimeFormatIndex);
-        underlineTimeStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+        underlineTimeStyle.setBorderBottom(BorderStyle.THIN);
 
         HSSFRow row2 = timecardSheet.createRow(1);
         createCell(row2, Messages.getString("Tracker.DailyTotals"), underlineTimeStyle); //$NON-NLS-1$
@@ -202,20 +205,20 @@ public class TimecardSpreadsheet {
         return null;
     }
 
-    private HSSFCellStyle findStyle(String formatString) {
-        short numCellStyles = wb.getNumCellStyles();
-        for(short i=0; i<numCellStyles; i++) {
-            HSSFCellStyle thestyle = wb.getCellStyleAt(i);
+    private CellStyle findStyle(String formatString) {
+        int numCellStyles = wb.getNumCellStyles();
+        for(int i=0; i<numCellStyles; i++) {
+            CellStyle thestyle = wb.getCellStyleAt(i);
             short dataFormat = thestyle.getDataFormat();
             String format = wb.createDataFormat().getFormat(dataFormat);
-            if (format.equals(formatString) && thestyle.getBorderBottom() == HSSFCellStyle.BORDER_NONE) {
+            if (format.equals(formatString) && thestyle.getBorderBottom() == BorderStyle.NONE) {
                 return thestyle;
             }
         }
         return null;
     }
 
-    private void createDaySheet(String day, HSSFCellStyle headerStyle) {
+    private void createDaySheet(String day, CellStyle headerStyle) {
         HSSFSheet daySheet = wb.createSheet(day);
         daySheet.setDefaultColumnWidth(12);
         //daySheet.setColumnWidth((short)4, (short)(80 * 256));
@@ -400,7 +403,7 @@ public class TimecardSpreadsheet {
      * @param style
      * @return
      */
-    private HSSFCell createCell(HSSFRow row, String text, HSSFCellStyle style) {
+    private HSSFCell createCell(HSSFRow row, String text, CellStyle style) {
         int lastCellNum = row.getLastCellNum();
         if (lastCellNum == -1) {lastCellNum=0;}
         HSSFCell cell = row.createCell(lastCellNum);
@@ -414,7 +417,7 @@ public class TimecardSpreadsheet {
      * @param style
      * @return
      */
-    private HSSFCell createCell(HSSFRow row, Date date, HSSFCellStyle style) {
+    private HSSFCell createCell(HSSFRow row, Date date, CellStyle style) {
         int lastCellNum = row.getLastCellNum();
         if (lastCellNum == -1) {lastCellNum=0;}
         HSSFCell cell = row.createCell(lastCellNum);
@@ -428,7 +431,7 @@ public class TimecardSpreadsheet {
      * @param style
      * @return
      */
-    private HSSFCell createFormulaCell(HSSFRow row, String formula, HSSFCellStyle style) {
+    private HSSFCell createFormulaCell(HSSFRow row, String formula, CellStyle style) {
         int lastCellNum = row.getLastCellNum();
         if (lastCellNum == -1) {lastCellNum=0;}
         HSSFCell cell = row.createCell(lastCellNum);

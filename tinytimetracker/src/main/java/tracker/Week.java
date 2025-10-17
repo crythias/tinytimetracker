@@ -4,9 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import org.apache.poi.hssf.usermodel.HSSFEvaluationWorkbook;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.formula.FormulaParser;
+// import org.apache.poi.hssf.usermodel.HSSFEvaluationWorkbook;
+// import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+// import org.apache.poi.ss.formula.FormulaParser;
 
 public class Week {
     private static final DateFormat dowFormat = new SimpleDateFormat("EEEE"); //$NON-NLS-1$
@@ -76,9 +76,10 @@ public class Week {
     }
 
     private static void makeSureDayIsValidExcelLabel(String day) {
-        String formula = "SUM('"+day+"'!A1:A65000)"; //$NON-NLS-1$ //$NON-NLS-2$
-        HSSFEvaluationWorkbook evaluationWorkbook = HSSFEvaluationWorkbook.create(new HSSFWorkbook());
-        FormulaParser.parse(formula, evaluationWorkbook);
+        // Excel sheet names cannot contain: \ / ? * [ ] and must be <= 31 chars
+        if (day == null || day.length() > 31 || day.matches(".*[\\\\/?*\\[\\]].*")) {
+            throw new IllegalArgumentException("Invalid Excel sheet name: " + day);
+        }
     }
 
     /**

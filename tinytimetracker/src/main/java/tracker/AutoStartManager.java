@@ -3,6 +3,11 @@ package tracker;
 
 import javax.swing.JCheckBoxMenuItem;
 
+interface AutoStart {
+    void autoStart(boolean autoStart);
+    JCheckBoxMenuItem getAutoStartCheckBox();
+}
+
 public class AutoStartManager implements AutoStart {
     public static AutoStartManager createAutoStartManager() {
         return null;
