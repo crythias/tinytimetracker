@@ -1,0 +1,41 @@
+head	1.2;
+access;
+symbols
+	Release_2007_05_12:1.1;
+locks
+	gyoung:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2008.12.04.17.59.05;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.05.18.18.32.25;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@new poi library, moving from shell.sf.net to web.sf.net.
+@
+text
+@scp dist/webstart/tinytimetracker.* rblack@@web.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/@
+
+
+1.1
+log
+@publish script
+@
+text
+@d1 1
+a1 1
+scp dist/webstart/tinytimetracker.* rblack@@shell.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/@
+

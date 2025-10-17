@@ -1,0 +1,77 @@
+head	1.2;
+access;
+symbols;
+locks
+	gyoung:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2008.12.17.22.27.25;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.12.05.20.24.26;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@applied some corrections given by Florentin Harbich (fharbich)
+@
+text
+@Tracker.EnterTaskHere=Aufgabe hier eingeben
+Tracker.Title=Tiny Time Tracker
+Tracker.Tooltip=<html> - Doppelklick f\u00fcr Time-Card<br> - Ziehen zum Verschieben<br> - Scroll oder Shift-Scroll, um die Zeit der Aufgabe anzupassen<br> - Rechtsklick f\u00fcr weitere Optionen</html>
+Tracker.RemoveFromDropdown=Aus der Liste entfernen
+Tracker.RightClickToRemove=Rechtsklick, um die Aufgabe zu entfernen
+Tracker.ChangingFirstDayInfo=Die \u00c4nderung des ersten Wochentags erzeugt eine neue Time-Card Datei, die am angegebenen Tag beginnt. Die bisher aufgezeichneten Zeiten verbleiben in der alten Time-Card Datei. Sind Sie sicher, dass Sie dies wollen?
+Tracker.OpenTimecard=Time-Card &\u00f6ffnen
+Tracker.OpenPreviousTimecard=&Vorherige Time-Card \u00f6ffnen
+Tracker.ViewAllTimecards=Alle Time-Cards &anzeigen
+Tracker.Exit=B&eenden
+Tracker.Timecard=Time-Card
+Tracker.Task=Aufgabe
+Tracker.Total=Gesamt
+Tracker.DailyTotals=Tagessummen
+Tracker.Start=Start
+Tracker.End=Ende
+Tracker.Duration=Dauer
+Tracker.StartTrackerOnWindowsStartup=Tracker beim Hochfahren von Windows starten
+Tracker.ErrorViewingTimecard.Message=Es gab einen Fehler beim Anzeigen der Datei. M\u00f6glicherweise ist Excel oder Open Office nicht installiert.
+Tracker.ErrorViewingTimecard.Title=Fehler beim Anzeigen der Datei
+Tracker.ChangingFirstDayOfWeek=\u00c4ndere Wochenanfang
+Tracker.ErrorViewingDirectory.Message=Es gab einen Fehler beim Anzeigen des Time-Card Verzeichnisses.
+Tracker.ErrorViewingDirectory.Title=Fehler beim \u00d6ffnen des Time-Card Verzeichnisses
+Tracker.FirstDayOfWeek=Wochenanfang
+Tracker.DontAskAgain=Nicht erneut fragen
+Tracker.ErrorPreviousTimecardDoesNotExist.Message=Vorherige Time-Card existiert nicht@
+
+
+1.1
+log
+@translation by Stefan Fuchs
+@
+text
+@d3 1
+a3 1
+Tracker.Tooltip=<html> - Doppelklick f\u00fcr Time-Card<br> - Ziehen zum verschieben<br> - Scroll oder Shift-Scroll um die Zeit der Aufgabe anzupassen<br> - Rechtsklick f\u00fcr weitere Optionen</html>
+d5 2
+a6 2
+Tracker.RightClickToRemove=Rechtsklick um die Aufgabe zu entfernen
+Tracker.ChangingFirstDayInfo=Die \u00c4nderung des ersten Wochentags erzeugt eine neue Time-Card Datei die am angegebenen Tag beginnt. Die bisher aufgezeichneten Zeiten verbleiben in der alten Time-Card Datei. Sind Sie sicher dies zu tun?
+d18 1
+a18 1
+Tracker.StartTrackerOnWindowsStartup=Tracker beim hochfahren von Windows starten
+d22 2
+a23 2
+Tracker.ErrorViewingDirectory.Message=Es gab einen Fehler beim anzeigen des Time-Card Verzeichnisses.
+Tracker.ErrorViewingDirectory.Title=Fehler beim \u00f6ffnen des Time-Card Verzeichnisses
+@
+

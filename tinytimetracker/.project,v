@@ -1,0 +1,58 @@
+head	1.2;
+access;
+symbols
+	Release_2007_05_12:1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2006.05.18.19.07.05;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.02.02.02.47.37;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@added autostart checkbox
+@
+text
+@<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>TinyTimeTracker</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@d3 1
+a3 1
+	<name>Time Tracker</name>
+@
+

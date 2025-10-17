@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	gyoung:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2008.12.29.02.55.59;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Dutch translation.  Thanks Chris!
+@
+text
+@Tracker.EnterTaskHere=Typ hier de taak in
+Tracker.Title=Tiny Time Tracker
+Tracker.Tooltip=<html> - Dubbelklikken voor tijdkaart<br> - Slepen om te verplaatsen<br> - Scroll of gebruik Shift-Scroll om de tijd van de taak te veranderen<br> - Klik met de rechtermuisknop voor meer opties</html>
+Tracker.RemoveFromDropdown=Verwijder van drop-down menu
+Tracker.RightClickToRemove=Klik met de rechtermuisknop op een taak om de taak te verwijderen
+Tracker.ChangingFirstDayInfo=Het veranderen van de eerste dag van de week zal een nieuwe tijdkaart maken die begint op de dag die u heeft gekozen.  Uw eerdere opgenomen tijden zullen in de oude tijdkaart blijven staan.  Weet u zeker dat u dit wilt doen?
+Tracker.OpenTimecard=&Open tijdkaart
+Tracker.OpenPreviousTimecard=Open &vorige tijdkaart
+Tracker.ViewAllTimecards=&Bekijk alle tijdkaarten
+Tracker.Exit=&Afsluiten
+Tracker.Timecard=Tijdkaart
+Tracker.Task=Taak
+Tracker.Total=Totaal
+Tracker.DailyTotals=Dagelijkse totalen
+Tracker.Start=Start
+Tracker.End=Einde
+Tracker.Duration=Duur
+Tracker.StartTrackerOnWindowsStartup=Open programma bij het starten van Windows
+Tracker.ErrorViewingTimecard.Message=Er was een fout bij het openen van het bestand. Zorg ervoor dat u Microsoft Office of OpenOffice.org heeft geinstalleerd.
+Tracker.ErrorViewingTimecard.Title=Fout bij het weergeven van de tijdkaart
+Tracker.ChangingFirstDayOfWeek=Veranderen eerste dag van de week
+Tracker.ErrorViewingDirectory.Message=Er is een fout opgetreden tijdens het weergeven van de tijdkaartenmap.
+Tracker.ErrorViewingDirectory.Title=Fout bij het openen van de tijdkaartenmap
+Tracker.FirstDayOfWeek=Eerste dag van de week
+Tracker.DontAskAgain=Vraag me niet opnieuw
+Tracker.ErrorPreviousTimecardDoesNotExist.Message=Vorige tijdkaart bestaat niet.@

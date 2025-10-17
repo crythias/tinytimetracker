@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	gyoung:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2008.12.09.17.03.24;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@romanian, translated by lucian lupescu
+@
+text
+@Tracker.EnterTaskHere=Aici scrie\u0163i \u00eendatorirea de memorat
+Tracker.Title=Mini-Agend\u0103
+Tracker.Tooltip=<html> - Dublu-click pentru lista de program\u0103ri<br> - Trage\u0163i pentru a-l mi\u015fca<br> - Derula\u0163i sau Shift-derulare pentru a potrivi timpul program\u0103rii<br> - Click dreapta pentru mai multe op\u0163iuni</html>
+Tracker.RemoveFromDropdown=Scoate din meniul autoderulant
+Tracker.RightClickToRemove=Click dreapta pe \u00eendatorire pentru a o scoate din meniul autoderulant
+Tracker.ChangingFirstDayInfo=Schimbarea primei zile a s\u0103pt\u0103m\u00e2nii va crea o nou\u0103 list\u0103 de program\u0103ri care va \u00eencepe cu ziua specificat\u0103 de dvs.  Datele \u00eenregistrate anterior vor r\u0103m\u00e2ne \u00een lista de program\u0103ri veche.  Sunte\u0163i sigur c\u0103 vre\u0163i s\u0103 face\u0163i acest lucru?
+Tracker.OpenTimecard=&Deschide\u0163i lista de program\u0103ri
+Tracker.OpenPreviousTimecard=Deschide\u0163i &lista de program\u0103ri anterioar\u0103
+Tracker.ViewAllTimecards=&Consulta\u0163i toate listele de program\u0103ri
+Tracker.Exit=I&e\u015fire
+Tracker.Timecard=List\u0103 de program\u0103ri
+Tracker.Task=\u00cendatorire
+Tracker.Total=Total
+Tracker.DailyTotals=Total zilnic
+Tracker.Start=\u00cencepe la
+Tracker.End=Se termin\u0103 la
+Tracker.Duration=Durata
+Tracker.StartTrackerOnWindowsStartup=Porne\u015fte Mini-Agenda la deschiderea Windows
+Tracker.ErrorViewingTimecard.Message=S-a \u00eenregistrat o eroare \u00een citirea fi\u015fierului.  Este posibil s\u0103 nu ave\u0163i instalat Excel sau Open Office.
+Tracker.ErrorViewingTimecard.Title=S-a \u00eenregistrat o eroare \u00een citirea fi\u015fierului
+Tracker.ChangingFirstDayOfWeek=Schimbarea primei zile a s\u0103pt\u0103m\u00e2nii
+Tracker.ErrorViewingDirectory.Message=S-a \u00eenregistrat o eroare \u00een citirea directorului cu listele de program\u0103ri.
+Tracker.ErrorViewingDirectory.Title=S-a \u00eenregistrat o eroare la deschiderea directorului cu listele de program\u0103ri
+Tracker.FirstDayOfWeek=Prima zi a s\u0103pt\u0103m\u00e2nii
+Tracker.DontAskAgain=Nu m\u0103 mai \u00eentreba
+Tracker.ErrorPreviousTimecardDoesNotExist.Message=Lista de program\u0103ri anterioar\u0103 nu exist\u0103@

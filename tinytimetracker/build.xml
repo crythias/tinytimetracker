@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     Nov 9, 2004 1:04:23 PM                                                        
+
+     Time Tracker    
+     Keeps track of your time in an excel spreadsheet
+                   
+     rblack                                                                
+     ====================================================================== -->
+<project name="Tiny Time Tracker" default="webstart">
+	<description>
+        This program connects to a caller-id-enabled modem to display caller ids of 
+        incoming calls and block calls of unwanted callers
+    </description>
+
+	<property name="dist" value="dist"/>
+	<property name="webstart" value="dist/webstart"/>
+	<property name="classes" value="classes"/>
+	<property name="src" value="src"/>
+	<property name="lib" value="lib"/>
+	<property name="tinytimetracker.jar" value="${dist}/tinytimetracker.jar"/>
+	<property name="jnlp" value="tinytimetracker.jnlp"/>
+
+	<target name="compile" description="Compiles the java files.">
+		<mkdir dir="${classes}"/>
+		<javac srcdir="${src}"
+         destdir="${classes}"
+         excludes="**/*Test.java"
+         debug="on">
+			<classpath>
+				<fileset dir="${lib}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<copy todir="${classes}" >
+			<fileset dir="${src}">
+				<include name="**/*.ico"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.png"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile" description="Create tinytimetracker.jar">
+		<mkdir dir="${dist}"/>
+		<jar destfile="${tinytimetracker.jar}" basedir="${classes}" 
+			manifest="MANIFEST.MF" excludes="*Test.class PlaceHolder.class" />
+	</target>
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: deploy
+         - - - - - - - - - - - - - - - - - -->
+	<target name="webstart" depends="jar" >
+		<mkdir dir="${webstart}"/>
+		<copy file="${jnlp}" todir="${webstart}"/>
+		<!--    	<copy file="images/phone.gif" todir="${webstart}"/> -->
+		<copy todir="${webstart}">
+			<fileset dir="${dist}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<signjar lazy="true" storepass="p987P(*&amp;" keypass="p987P(*&amp;" alias="rb">
+			<fileset dir="${webstart}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</signjar>
+
+	</target>
+	
+	<target name="clean" >
+		<delete dir="${classes}"/>
+		<delete dir="${dist}"/>
+	</target>
+
+</project>
+

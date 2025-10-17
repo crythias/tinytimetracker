@@ -1,0 +1,175 @@
+head	1.7;
+access;
+symbols
+	Release_2007_05_12:1.5;
+locks
+	gyoung:1.7; strict;
+comment	@# @;
+expand	@b@;
+
+
+1.7
+date	2008.12.04.17.59.05;	author rblack;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2007.08.20.14.29.54;	author rblack;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2007.04.19.22.45.16;	author rblack;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2007.04.04.13.21.38;	author rblack;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2006.05.18.21.04.31;	author rblack;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.05.18.19.07.05;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.02.02.03.12.26;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@new poi library, moving from shell.sf.net to web.sf.net.
+@
+text
+@<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+If you're reading this, it probably means the mirror you're downloading from
+doesn't handle the Java Web Start content type correctly.
+You can install and run Tiny Time Tracker by doing one of two things:
+
+* Point your browser to http://tinytimetracker.sourceforge.net/webstart/tinytimetracker.jnlp
+
+-OR-
+
+* Save this file to your system by choosing Save from your browser's File menu, then open 
+    (double-click) the file on your computer.
+
+If niether of these work, make sure you have Java installed (java.com)
+
+-->
+<?xml-stylesheet type="text/xsl" href="jnlp.xsl" ?>
+<jnlp spec="1.0+" codebase="http://tinytimetracker.sourceforge.net/webstart" href="tinytimetracker.jnlp">
+    <information>
+        <title>Tiny Time Tracker</title>
+        <vendor>Russell Black</vendor>
+        <offline-allowed/>
+         <shortcut online="false">
+            <menu/>
+         </shortcut>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.5+" />
+        <jar href="tinytimetracker.jar"/>
+        <jar href="poi-3.5-beta3-20080926.jar" />
+    </resources>
+    <application-desc main-class="tracker.Tracker"/>
+</jnlp>
+@
+
+
+1.6
+log
+@1.6 support
+@
+text
+@d34 1
+a34 1
+        <jar href="poi-2.5.1-final-20040804.jar" />
+@
+
+
+1.5
+log
+@added some instructions
+@
+text
+@d32 1
+a32 1
+        <j2se version="1.5" />
+@
+
+
+1.4
+log
+@removed update frequency
+@
+text
+@d3 14
+a16 1
+$Id$
+d18 1
+@
+
+
+1.3
+log
+@latest
+@
+text
+@d22 1
+a22 4
+    <application-desc main-class="tracker.Tracker">
+    	<argument>-update-check-frequency</argument>
+    	<argument>3000000000000000</argument>
+    </application-desc>
+@
+
+
+1.2
+log
+@added autostart checkbox
+@
+text
+@d7 1
+a7 1
+        <title>Time Tracker</title>
+d10 3
+@
+
+
+1.1
+log
+@lateste
+@
+text
+@d5 1
+a5 1
+<jnlp spec="1.0+" codebase="file://////192.168.100.212/home/timetracker/dist" href="tracker.jnlp">
+d8 1
+a8 1
+        <vendor>iArchives</vendor>
+d16 2
+a17 2
+        <jar href="tracker.jar"/>
+        <jar href="../lib/poi-2.0-RC2.jar" />
+d21 1
+a21 1
+    	<argument>30</argument>
+@
+

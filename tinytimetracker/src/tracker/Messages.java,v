@@ -1,0 +1,174 @@
+head	1.5;
+access;
+symbols
+	Release_2007_05_12:1.1;
+locks
+	gyoung:1.5; strict;
+comment	@# @;
+
+
+1.5
+date	2008.12.04.17.51.52;	author rblack;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.08.25.21.34.50;	author rblack;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2007.10.19.22.36.37;	author afuqua;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.10.01.22.10.40;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.05.31.18.25.08;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@changed the way we initialize messages
+@
+text
+@/*
+ * Created on May 31, 2006
+ *
+ * Copyright (c) 2006 iArchives
+ */
+package tracker;
+
+import java.net.*;
+import java.util.*;
+
+public class Messages {
+    private static ResourceBundle RESOURCE_BUNDLE;
+
+    public static void initialize(String bundleName) {
+        try {
+            // look in timecards directory (overrides for localization)
+            getBundle(bundleName);
+        } 
+        catch (MissingResourceException e)
+        {
+            // now look in the normal place
+            getBundle("tracker."+bundleName);
+        }
+    }
+
+    private static void getBundle(String bundleName) throws MissingResourceException {
+        try {
+            ClassLoader extra = new URLClassLoader(new URL[]{new URL("file:" + System.getProperty("user.home") + "/timecards/")}, Messages.class.getClassLoader());
+            RESOURCE_BUNDLE = ResourceBundle.getBundle(bundleName, Locale.getDefault(), extra);
+            System.out.println("Using the messages file: " + bundleName);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized static String getString(String key) {
+        if (RESOURCE_BUNDLE == null)
+        {
+            initialize("messages");
+        }
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
+        }
+    }
+}
+@
+
+
+1.4
+log
+@fixed class loader problem
+@
+text
+@d14 1
+a14 1
+    public Messages(String bundleName) {
+d16 1
+d21 1
+a21 1
+            // used when running from the dev environment
+d26 1
+a26 1
+    private void getBundle(String bundleName) throws MissingResourceException {
+d36 5
+a40 1
+    public static String getString(String key) {
+@
+
+
+1.3
+log
+@added support for mnemonic character for View, Open and eXit.
+@
+text
+@d27 1
+a27 1
+            ClassLoader extra = new URLClassLoader(new URL[]{new URL("file:" + System.getProperty("user.home") + "/timecards/")});
+@
+
+
+1.2
+log
+@i18n support
+@
+text
+@a11 2
+    private static final String BUNDLE_NAME = "tracker.messages"; //$NON-NLS-1$
+
+d14 1
+a14 2
+    static
+    {
+d16 1
+a16 3
+            ClassLoader extra = new URLClassLoader(new URL[]{new URL("file:" + System.getProperty("user.home") + "/timecards/")}, null);
+            RESOURCE_BUNDLE = ResourceBundle.getBundle("messages", Locale.getDefault(), extra);
+            System.out.println("Using the messages file found in the timecard directory");
+d20 2
+a21 1
+            // no need to print this
+d23 8
+a30 1
+        catch (Throwable e) {
+a32 7
+        if (RESOURCE_BUNDLE == null)
+        {
+            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+        }
+    }
+    
+    private Messages() {
+a35 1
+        // TODO Auto-generated method stub
+@
+
+
+1.1
+log
+@localized
+@
+text
+@d8 1
+d14 1
+a14 1
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+d16 20
+@
+

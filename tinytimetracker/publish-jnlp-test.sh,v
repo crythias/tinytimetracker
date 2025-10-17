@@ -1,0 +1,42 @@
+head	1.2;
+access;
+symbols;
+locks
+	gyoung:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2008.12.04.17.59.05;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.08.25.21.52.02;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@new poi library, moving from shell.sf.net to web.sf.net.
+@
+text
+@scp dist/webstart/tinytimetracker-test.jnlp rblack@@web.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/tinytimetracker-test.jnlp
+@
+
+
+1.1
+log
+@mac hidden window fix and created test jnlp
+@
+text
+@d1 1
+a1 1
+scp dist/webstart/tinytimetracker-test.jnlp rblack@@shell.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/tinytimetracker-test.jnlp
+@
+

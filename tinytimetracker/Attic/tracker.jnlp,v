@@ -1,0 +1,62 @@
+head	1.2;
+access;
+symbols
+	Release_2007_05_12:1.2;
+locks; strict;
+comment	@# @;
+expand	@b@;
+
+
+1.2
+date	2006.02.02.03.12.26;	author rblack;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2006.02.02.02.47.37;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@lateste
+@
+text
+@<?xml version="1.0" encoding="UTF-8"?>
+<!--
+$Id$
+-->
+<jnlp spec="1.0+" codebase="file://////192.168.100.212/home/timetracker/dist" href="tracker.jnlp">
+    <information>
+        <title>Time Tracker</title>
+        <vendor>iArchives</vendor>
+        <offline-allowed/>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.5" />
+        <jar href="tracker.jar"/>
+        <jar href="../lib/poi-2.0-RC2.jar" />
+    </resources>
+    <application-desc main-class="tracker.Tracker">
+    	<argument>-update-check-frequency</argument>
+    	<argument>30</argument>
+    </application-desc>
+</jnlp>
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@@
+

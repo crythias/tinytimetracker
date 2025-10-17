@@ -1,0 +1,26 @@
+head	1.1;
+access;
+symbols
+	Release_2007_05_12:1.1;
+locks
+	gyoung:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2007.04.19.22.52.09;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@more publish scripts
+@
+text
+@scp dist/webstart/tinytimetracker.jnlp dist/webstart/jnlp.xsl rblack@@shell.sf.net:/home/groups/t/ti/tinytimetracker/htdocs/webstart/
+@

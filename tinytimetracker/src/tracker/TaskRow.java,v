@@ -1,0 +1,119 @@
+head	1.2;
+access;
+symbols
+	Release_2007_05_12:1.1;
+locks
+	gyoung:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2008.12.02.17.58.54;	author rblack;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.05.11.00.31.19;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@new poi library
+@
+text
+@package tracker;
+
+import java.util.Date;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+
+public class TaskRow {
+
+    private HSSFCell taskCell, startCell, endCell /*, detailsCell */;
+    private String task;
+    private Date start, end;
+    //private String details;
+    private final HSSFRow row;
+
+    public TaskRow(HSSFRow row) {
+        this.row = row;
+
+        taskCell = row.getCell(0);
+        task = taskCell.getRichStringCellValue().getString();
+
+        startCell = row.getCell(1);
+        start = startCell.getDateCellValue();
+
+        endCell = row.getCell(2);
+        end = endCell.getDateCellValue();
+    }
+
+    public int getRowNum() {
+        return row.getRowNum();
+    }
+
+    public long getDurationMillis() {
+        return end.getTime() - start.getTime();
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+        endCell.setCellValue(end);
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+        startCell.setCellValue(start);
+    }
+
+    /**
+     * @@return Returns the task.
+     */
+    public String getTask() {
+        return task;
+    }
+    /**
+     * @@return Returns the start.
+     */
+    public Date getStart() {
+        return start;
+    }
+
+    /**
+     * @@return Returns the end.
+     */
+    public Date getEnd() {
+        return end;
+    }
+
+    public String toString() {
+        return task + " " + start + " - " + end; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+}
+@
+
+
+1.1
+log
+@incorporated Andrew Fuqua's first-day-of-week stuff, and added a UI for it.
+@
+text
+@d19 2
+a20 2
+        taskCell = row.getCell((short)0);
+        task = taskCell.getStringCellValue();
+d22 1
+a22 1
+        startCell = row.getCell((short)1);
+d25 1
+a25 1
+        endCell = row.getCell((short)2);
+@
+

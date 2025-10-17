@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	gyoung:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2008.12.11.17.03.45;	author rblack;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Finnish translation by Teemu Mäki
+@
+text
+@Tracker.EnterTaskHere=Teht\u00e4v\u00e4
+Tracker.Title=Tiny Time Tracker
+Tracker.Tooltip=<html> - Kaksoisklikkaa: aikalaskelma<br> - Siirr\u00e4 raahaamalla<br> - Rullaa tai Shift-rullaa s\u00e4\u00e4t\u00e4\u00e4ksesi teht\u00e4v\u00e4n aikaa<br> - Klikkaa oikealla napilla: lis\u00e4\u00e4 valintoja</html>
+Tracker.RemoveFromDropdown=Poista pudotusvalikosta
+Tracker.RightClickToRemove=Klikkaa oikealla napilla teht\u00e4v\u00e4\u00e4n poistaaksesi pudotusvalikosta
+Tracker.ChangingFirstDayInfo=Viikon aloitusp\u00e4iv\u00e4n vaihtaminen luo uuden aikalaskelmatiedoston, joka alkaa valitsemastasi p\u00e4iv\u00e4st\u00e4. Aiemmin kirjaamasi ajat pysyv\u00e4t vanhassa aikalaskelmatiedostossa. Haluatko varmasti jatkaa?
+Tracker.OpenTimecard=&Avaa aikalaskelma
+Tracker.OpenPreviousTimecard=Avaa a&iempi aikalaskelma
+Tracker.ViewAllTimecards=&N\u00e4yt\u00e4 kaikki aikalaskelmat
+Tracker.Exit=&Poistu
+Tracker.Timecard=Aikalaskelma
+Tracker.Task=Teht\u00e4v\u00e4
+Tracker.Total=Yhteens\u00e4
+Tracker.DailyTotals=P\u00e4iv\u00e4t yhteens\u00e4
+Tracker.Start=Alkoi
+Tracker.End=P\u00e4\u00e4ttyi
+Tracker.Duration=Kesto
+Tracker.StartTrackerOnWindowsStartup=K\u00e4ynnist\u00e4 Tracker Windowsin k\u00e4ynnistyess\u00e4
+Tracker.ErrorViewingTimecard.Message=Tiedostoa avatessa tapahtui virhe.  Kenties sinulla ei ole Microsoft Excel tai Open Office asennettuna.
+Tracker.ErrorViewingTimecard.Title=Virhe avatessa tiedostoa
+Tracker.ChangingFirstDayOfWeek=Viikon aloitusp\u00e4iv\u00e4n vaihtaminen
+Tracker.ErrorViewingDirectory.Message=Aikalaskelmahakemistoa avatessa tapahtui virhe.
+Tracker.ErrorViewingDirectory.Title=Virhe avatessa aikalaskelmahakemistoa
+Tracker.FirstDayOfWeek=Viikon aloitusp\u00e4iv\u00e4
+Tracker.DontAskAgain=\u00c4l\u00e4 kysy en\u00e4\u00e4
+Tracker.ErrorPreviousTimecardDoesNotExist.Message=Aiempia aikalaskelmia ei ole@
