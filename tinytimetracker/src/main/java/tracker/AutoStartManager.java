@@ -3,7 +3,7 @@ package tracker;
 
 import javax.swing.JCheckBoxMenuItem;
 
-interface AutoStart {
+interface AutoStart_duplicate {
     void autoStart(boolean autoStart);
     JCheckBoxMenuItem getAutoStartCheckBox();
 }
