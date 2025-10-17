@@ -31,7 +31,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+/*
 import java.awt.peer.WindowPeer;
+*/
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -79,8 +81,9 @@ import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import javax.swing.text.JTextComponent;
 
-import com.sun.java.swing.plaf.windows.WindowsComboBoxUI;
-
+/* import com.sun.java.swing.plaf.windows.WindowsComboBoxUI;
+*/
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 /**
  * To compile: 
@@ -90,7 +93,7 @@ import com.sun.java.swing.plaf.windows.WindowsComboBoxUI;
  * 
  * To run:
  * 
- * "C:\Program Files\Java\jdk1.5.0\bin\javaw.exe" -classpath "c:\bin\Time Tracker\classes_g;c:\bin\Time Tracker\lib\poi-2.0-RC2.jar" tracker.Tracker 
+ * "C:\Program Files\Java\jdk1.5.0\bin\javaw.exe" -classpath "c:\bin\Time Tracker\classes_g;c:\bin\Time Tracker\lib\poi-5.4.1.jar" tracker.Tracker 
  * 
  * @author rblack
  */
@@ -312,9 +315,7 @@ public class TimeTracker extends JDialog {
         mainPopup.add(openPreviousTimecardAction);
         mainPopup.add(openAllTimecardsAction);
         
-        if (autoStartManager != null){
-            mainPopup.add(autoStartManager.getAutoStartCheckBox());
-        }
+        // AutoStartManager is now a stub; no autostart menu item.
         
         mainPopup.add(firstDayOfWeekMenu);
 
@@ -468,59 +469,11 @@ public class TimeTracker extends JDialog {
             public void run() {
                 // this task pops the window to the top periodically so it stays 
                 // on top of the task bar (which is also an always-on-top window)
-                WindowPeer wp;
-                try {
-                    // don't do this if there's a dialog popped up.
-                    Window[] ownedWindows = TimeTracker.this.getOwnedWindows();
-                    for (Window window : ownedWindows) {
-                        if (window.isVisible())
-                        {
-                            return;
-                        }
-                    }
-                    wp = (WindowPeer)Component.class.getMethod("getPeer").invoke(TimeTracker.this); //$NON-NLS-1$
-                    
-                    
-                    if (m == null && !noMethodFound)
-                    {
-                        try {
-                            m = WindowPeer.class.getMethod("updateAlwaysOnTopState"); //$NON-NLS-1$
-                        }
-                        catch (NoSuchMethodException e)
-                        {
-                            try {
-                                m = WindowPeer.class.getMethod("updateAlwaysOnTop"); //$NON-NLS-1$
-                            }
-                            catch (NoSuchMethodException f)
-                            {
-                                try {
-                                    m = WindowPeer.class.getMethod("setAlwaysOnTop", Boolean.TYPE); //$NON-NLS-1$
-                                }
-                                catch (NoSuchMethodException g)
-                                {
-                                    noMethodFound = true;
-                                }
-                            }
-                        }
-                    }
-                    if (m != null)
-                    {
-                        if (m.getName().equals("updateAlwaysOnTop") || m.getName().equals("updateAlwaysOnTopState")) //$NON-NLS-1$
-                        {
-                            m.invoke(wp);
-                        }
-                        else if (m.getName().equals("setAlwaysOnTop")) //$NON-NLS-1$
-                        {
-                            m.invoke(wp, true); 
-                        }
-                    }
-                } catch (Throwable t) {
-                    setLabel(t);
-                }                
                 if (System.currentTimeMillis() > hideExtraTextMillis) {
                     hideExtraText();
                 }
-            }}, 0, 1 * 1000);
+            }
+        }, 0, 1 * 1000);
 
     }
 
@@ -1079,13 +1032,13 @@ public class TimeTracker extends JDialog {
         
     }
     
-    private class MyComboBoxUI extends WindowsComboBoxUI {
-        
+    private class MyComboBoxUI extends BasicComboBoxUI {
+
+        @Override
         protected ComboPopup createPopup() {
-            //ComboPopup comboPopup = super.createPopup();
             return new MyComboPopup(comboBox);
-        }
     }
+}
     
     private class MyComboPopup extends BasicComboPopup {
 

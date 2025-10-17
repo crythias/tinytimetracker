@@ -10,7 +10,7 @@ public class MnemonicActionName {
         int index = value.indexOf('&');
         // If there is no '&', index will be -1 and we'll just 
         // use the first character.
-        actionMnemonic = new Integer( Character.toUpperCase( value.charAt(index+1) ) );
+        actionMnemonic = Integer.valueOf( Character.toUpperCase( value.charAt(index+1) ) );
         if (!((actionMnemonic >= 'A' && actionMnemonic <= 'Z' )
             || actionMnemonic > '0' && actionMnemonic <= '9' ))
         {
