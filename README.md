@@ -14,4 +14,4 @@ To compile, just run ant against the tinytimetracker folder. Current targets fro
 
 "deploy" and the Java webstart items have been removed and don't work anyway.
 
-As of this writing, the app does not compile. There was a hiccup because legacy cruft already worked. 
+As of this writing, the app does compile. No clock and no excel spreadsheet.
