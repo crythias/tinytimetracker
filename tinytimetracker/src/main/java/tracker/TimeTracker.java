@@ -654,8 +654,6 @@ public class TimeTracker extends JDialog {
      * @param newTime
      */
     private void showTime(long seconds) {
-        System.out.println("[Debug: ClockUpdate] showTime → " + formatTime(seconds));
-
         setLabel(formatTime(seconds));
     }
 
