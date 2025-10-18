@@ -1,0 +1,18 @@
+# Translated from legacy .cvsignore
+.settings/
+bin/
+classes/
+classes_g/
+
+# Build artifacts
+dist/
+classes/
+
+# Eclipse and IDE metadata
+.classpath
+.project
+
+# Legacy RCS metadata
+*.v
+
+fileHashes.lock
