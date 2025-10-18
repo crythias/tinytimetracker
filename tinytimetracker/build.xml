@@ -15,9 +15,17 @@
 	<property name="dist" value="dist"/>
 	<property name="webstart" value="dist/webstart"/>
 	<property name="classes" value="classes"/>
-	<property name="src" value="src/main/java/tracker"/>
+	<property name="src" value="src/main/java"/>
 	<property name="lib" value="lib/"/>
 	<property name="tinytimetracker.jar" value="${dist}/tinytimetracker.jar"/>
+	<path id="project.classpath">
+		<pathelement location="${classes}"/>
+    	<pathelement location="lib/poi-5.4.1.jar"/>
+    	<pathelement location="lib/commons-io-2.13.0.jar"/>
+    	<pathelement location="lib/log4j-api-2.20.0.jar"/>
+    	<pathelement location="lib/log4j-core-2.20.0.jar"/>
+	</path>
+
 
 	<target name="compile" description="Compiles the java files.">
 		<mkdir dir="${classes}"/>
@@ -25,12 +33,8 @@
 		 includeantruntime="false" 
          destdir="${classes}"
          excludes="**/*Test.java"
+		 classpathref="project.classpath" 
 		 debug="on">
-			<classpath>
-				<fileset dir="${lib}">
-					<include name="*.jar"/>
-				</fileset>
-			</classpath>
 		</javac>
 		<copy todir="${classes}" >
 			<fileset dir="${src}">
@@ -39,6 +43,7 @@
 				<include name="**/*.jpg"/>
 				<include name="**/*.properties"/>
 				<include name="**/*.png"/>
+				<include name="**/log4j2.xml"/>
 			</fileset>
 		</copy>
 	</target>
@@ -51,7 +56,11 @@
 	<!-- - - - - - - - - - - - - - - - - - 
           target: deploy
          - - - - - - - - - - - - - - - - - -->
-
+	<target name="run" depends="compile">
+    	<java classname="tracker.Tracker" fork="true">
+ 			<classpath refid="project.classpath"/>
+    	</java>
+	</target>
 	
 	<target name="clean" >
 		<delete dir="${classes}"/>

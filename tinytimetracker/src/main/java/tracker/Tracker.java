@@ -64,6 +64,11 @@ public class Tracker {
                 logToConsole = true;
             } else if (arg.equals("-locale")) { //$NON-NLS-1$
                 Locale.setDefault(new Locale(args[++i]));
+            } else if (arg.equals("-help") || arg.equals("-?")) {
+                usage(); // already prints help and exits
+            } else if (arg.equals("-version")) {
+                System.out.println("TinyTimeTracker version 2.0.0");
+                System.exit(0);
             } else {
                 System.out.println("Unrecognized argument " + arg); //$NON-NLS-1$
                 usage();
@@ -112,7 +117,8 @@ public class Tracker {
     }
 
     void usage() {
-        System.err.println("Usage: tracker.Tracker [-d <timecard directory>]"); //$NON-NLS-1$
+        System.err.println("Usage: tracker.Tracker [-d <timecard directory>] [-console] [-locale <locale>] [-help|-?] [-version]");
         System.exit(1);
     }
+
 }

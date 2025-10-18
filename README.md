@@ -7,11 +7,20 @@ This as-is project probably won't work as the original project had hard-coded so
 
 I'd like to see this work in some way that can run locally.
 
-To compile, just run ant against the tinytimetracker folder. Current targets from original source:
+To compile, just run [ant](https://ant.apache.org) against the tinytimetracker (sub)folder. Current targets from original source:
 - ```ant compile```
 - ```ant jar```
 - ```ant clean```
+- ```ant run```
 
 "deploy" and the Java webstart items have been removed and don't work anyway.
 
-As of this writing, the app does compile. No clock and no excel spreadsheet.
+This compiles and runs on Java 25. It has not (yet) been tested with Java 8+ (but it should run).
+
+added libraries:
+```
+- commons-io-2.13.0.jar
+- log4j-api-2.20.0.jar
+- log4j-core-2.20.0.jar
+- poi-5.4.1.jar
+  ```

@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main-local-nojnlp" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main-local-nojnlp" ]
 
 jobs:
   build:

@@ -5,3 +5,4 @@ Git hygiene supersedes legacy CVS scaffolding.
 - Preserved originals in main branch for historical audit
 - Asserted clean build hygiene for ant-based resurrection arc
 
+- Verified Java 25 compatibility; deferred syntax audit for Java 8–17 fallback
