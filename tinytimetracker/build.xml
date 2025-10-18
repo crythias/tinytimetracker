@@ -35,6 +35,7 @@
          excludes="**/*Test.java"
 		 classpathref="project.classpath" 
 		 debug="on">
+		<compilerarg value="-Xlint:-options"/>
 		</javac>
 		<copy todir="${classes}" >
 			<fileset dir="${src}">

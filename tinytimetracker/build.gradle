@@ -1,6 +1,10 @@
 plugins {
-    id 'java'
+    id 'application'
 }
+
+group = "com.tinytimetracker"
+version = "2.0-beta-1"
+
 
 repositories {
     mavenCentral()
@@ -10,7 +14,48 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2' // test
     implementation 'org.apache.poi:poi:5.4.1'         // HSSF (.xls)
     implementation 'org.apache.poi:poi-ooxml:5.4.1'   // XSSF (.xlsx), optional
+    implementation("commons-io:commons-io:2.13.0")
+    implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
 }
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+            exclude '**/*Test.java'
+        }
+        resources {
+            srcDirs = ['src']
+            include '**/*.ico', '**/*.gif', '**/*.jpg', '**/*.png', '**/*.properties', '**/log4j2.xml'
+        }
+    }
+}
+
+application {
+    mainClass.set("tracker.Tracker")
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+                'Main-Class': 'tracker.Tracker'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+tasks.create('runTracker', JavaExec) {
+    group = 'application'
+    description = 'Runs the Tiny Time Tracker'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'tracker.Tracker'
+}
+
+
+
 
 test {
     useJUnitPlatform()
