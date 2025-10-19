@@ -48,7 +48,12 @@ public class Tracker {
         install(autoStartManager);
 
         TimeTracker tracker = new TimeTracker(directory, autoStartManager, prefs);
+        
+        // Prevent focus stealing on launch
+        tracker.setFocusableWindowState(false);
         tracker.setVisible(true);
+        tracker.setFocusableWindowState(true); // Re-enable focus after showing
+
     }
     
     void parseArguments(String[] args) {

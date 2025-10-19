@@ -58,7 +58,7 @@
           target: deploy
          - - - - - - - - - - - - - - - - - -->
 	<target name="run" depends="compile">
-    	<java classname="tracker.Tracker" fork="true">
+    	<java classname="tracker.Tracker" fork="true" spawn="true">
  			<classpath refid="project.classpath"/>
     	</java>
 	</target>

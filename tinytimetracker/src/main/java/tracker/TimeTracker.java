@@ -2,6 +2,9 @@
  * Created on Nov 8, 2004
  *
  * Copyright (c) 2004 iArchives
+ * 
+ * Updated by Gerald Young 2025
+ * 
  */
 package tracker;
 
@@ -540,7 +543,7 @@ public class TimeTracker extends JDialog {
         else {
             setTaskComboText(currentTask);
         }
-        getContentPane().requestFocus();
+        // getContentPane().requestFocus();
     }
 
     private void autoComplete() {
@@ -894,62 +897,53 @@ public class TimeTracker extends JDialog {
         }.start();
     }
 
+    /**
+     * Replaced: Attempts to open the given file or directory using platform-specific commands.
+     * 
+     * @param toExec the file or directory to open
+     * @return -1 if all attempts failed, 0 if one succeeded
+     * @throws InterruptedException if the thread is interrupted while waiting for a process to complete
+     */
+    private int shellExec(final String toExec) throws InterruptedException {
+        String[][] fallbackCommands;
 
-    private int shellExec(final String toExec) throws InterruptedException, IOException {
-        int retValue = -1;
-        if(AutoStartManager.isWindows()) 
-        {
-            retValue = StreamCopier.copyProcessStreams(Runtime.getRuntime().exec(new String[] {
-                "rundll32", "shell32.dll", "ShellExec_RunDLL", toExec //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            })).waitFor();
-        } 
-        else if (AutoStartManager.isMac())
-        {
-            retValue = StreamCopier.copyProcessStreams(Runtime.getRuntime().exec(new String[] {
-                "/usr/bin/open", toExec //$NON-NLS-1$
-            })).waitFor();
+        if (AutoStartManager.isWindows()) {
+            fallbackCommands = new String[][] {
+                { "explorer", toExec }
+            };
+        } else if (AutoStartManager.isMac()) {
+            fallbackCommands = new String[][] {
+                { "/usr/bin/open", toExec }
+            };
+        } else {
+        // Linux and others
+            fallbackCommands = new String[][] {
+                { "xdg-open", toExec },
+                { "gio", "open", toExec },
+                { "nautilus", "--no-desktop", toExec },
+                { "kfmclient", "exec", toExec }
+            };
         }
-        else { //linux
-            try
-            {
-                System.out.println("Trying gnome-open"); //$NON-NLS-1$
-                retValue = StreamCopier.copyProcessStreams(Runtime.getRuntime().exec(new String[] {
-                    "gnome-open", toExec //$NON-NLS-1$ 
-                })).waitFor();
-            }
-            catch (IOException e)
-            {
-                System.out.println((new StringBuilder()).append("gnome-open threw an exception: ").append(e).toString()); //$NON-NLS-1$
-            }
-            if (retValue != 0)
-            {
-                try
-                {
-                    System.out.println("Trying nautilus"); //$NON-NLS-1$
-                    retValue = StreamCopier.copyProcessStreams(Runtime.getRuntime().exec(new String[] {
-                            "nautilus", "--no-desktop", toExec //$NON-NLS-1$ //$NON-NLS-2$
-                    })).waitFor();
-                }
-                catch(IOException e)
-                {
-                    System.out.println((new StringBuilder()).append("nautilus threw an exception: ").append(e).append("Trying kfmclient").toString()); //$NON-NLS-1$ //$NON-NLS-2$
-                }
-                if(retValue != 0)
-                {
-                    System.out.println((new StringBuilder()).append("nautilus returned ").append(retValue).append(", Trying kfmclient").toString()); //$NON-NLS-1$ //$NON-NLS-2$
-                    retValue = StreamCopier.copyProcessStreams(Runtime.getRuntime().exec(new String[] {
-                            "kfmclient", "exec", toExec //$NON-NLS-1$ //$NON-NLS-2$
-                    })).waitFor();
-                    if(retValue == 1)
-                        retValue = 0;
-                }
+
+        for (String[] cmd : fallbackCommands) {
+            try {
+                System.out.println("Trying: " + String.join(" ", cmd));
+                Process process = Runtime.getRuntime().exec(cmd);
+                int ret = StreamCopier.copyProcessStreams(process).waitFor();
+                if (ret == 0) return 0;
+                System.err.println("Command failed with code: " + ret);
+            } catch (IOException e) {
+                System.err.println("Command failed: " + Arrays.toString(cmd));
+                e.printStackTrace();
             }
         }
-        return retValue;
+
+        return -1;
     }
 
     /**
-     * 
+     * Removes the current task from the dropdown list.
+     *  
      */
     private void removeCurrentTask() {
         Object selectedItem = taskCombo.getSelectedItem();
@@ -959,6 +953,11 @@ public class TimeTracker extends JDialog {
         setTaskComboText(enterTaskHere);
     }
 
+    /**
+     * Mouse listener and motion listener to move the window around.
+     * @author rblack
+     * 
+     */
     private class Mover implements MouseMotionListener, MouseListener {
 
         private Point pressPoint = null;;
@@ -1024,6 +1023,10 @@ public class TimeTracker extends JDialog {
         
     }
     
+    /**
+     * creates a custom ComboBoxUI to provide a custom ComboPopup
+     * @author rblack
+     */
     private class MyComboBoxUI extends BasicComboBoxUI {
 
         @Override
