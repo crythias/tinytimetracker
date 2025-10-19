@@ -5,20 +5,25 @@ import java.util.Locale;
 import java.util.prefs.Preferences;
 
 import javax.swing.JCheckBoxMenuItem;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import junit.framework.TestCase;
-
-public class TrackerTest extends TestCase {
+public class TrackerTest {
     Tracker tracker;
     
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         tracker = new Tracker(Preferences.userNodeForPackage(Tracker.class).node("test"));
     }
 
+    @AfterEach
     public void tearDown() throws Exception {
         Preferences.userNodeForPackage(Tracker.class).node("test").clear();
     }
-
+ 
+    @Test
     public void testParseArguments_All() {
         String[] args = { "-update", "-d", "fooDirectory", "-console", 
                 "-update-check-frequency", "5", "-locale", "fooLocale"};
@@ -28,6 +33,7 @@ public class TrackerTest extends TestCase {
         assertEquals( new Locale("fooLocale"), Locale.getDefault() );        
     }
     
+    @Test
     public void testParseArguments_None() {
         Object defaultLocale = Locale.getDefault();
         String[] args = { };
@@ -36,10 +42,12 @@ public class TrackerTest extends TestCase {
         assertEquals( System.getProperty("user.home") + "/timecards", tracker.dirName );
         assertEquals(defaultLocale , Locale.getDefault());        
     } 
-    
+
+    @Test
     public void testSetupLogging() { // TODO
     }
-    
+
+    @Test
     public void testInstall_AlreadyInstalled_WithoutAutostart() {
         tracker.prefs.putBoolean("installed", true);
         
@@ -51,6 +59,7 @@ public class TrackerTest extends TestCase {
         assertEquals(Calendar.FRIDAY, tracker.prefs.getInt("firstDayOfWeek", -1));
     }
     
+    @Test
     public void testInstall_NotAlreadyInstalled_WithoutAutostart() {
         tracker.install(null);
         assertTrue( tracker.prefs.getBoolean("installed", false) );
@@ -58,6 +67,7 @@ public class TrackerTest extends TestCase {
                 tracker.prefs.getInt("firstDayOfWeek", -1) ); 
     }
         
+    @Test
     public void testInstall_NotAlreadyInstalled_WithAutostart() {
         MockAutoStart mockAutoStart = new MockAutoStart();
         tracker.install( mockAutoStart );
@@ -65,6 +75,7 @@ public class TrackerTest extends TestCase {
         assertTrue( mockAutoStart.autoStartValue );
     }
     
+    @Test
     public void testInstall_AlreadyInstalled_WithAutostart() {
         tracker.prefs.putBoolean("installed", true);
         MockAutoStart mockAutoStart = new MockAutoStart();

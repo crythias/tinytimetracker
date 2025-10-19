@@ -5,16 +5,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MultipleInstancesLockTest extends TestCase {
+public class MultipleInstancesLockTest {
     MultipleInstancesLock lock;
     
+    @BeforeEach
     public void setUp() throws IOException {
         File fileToLock = File.createTempFile("TinyTimeTracker", "lock");
         lock = new MultipleInstancesLock(fileToLock);
     }
     
+    @Test
     public void testPreventMultipleInstances_notOverlapping() throws IOException, MultipleInstancesException {
         lock.preventMultipleInstances();
         lock.allowOtherInstances();
@@ -22,6 +27,7 @@ public class MultipleInstancesLockTest extends TestCase {
         lock.allowOtherInstances();
     }
     
+    @Test
     public void testPreventMultipleInstances_Overlapping() throws IOException, MultipleInstancesException {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         System.setErr(new PrintStream(stream));

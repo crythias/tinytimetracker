@@ -1,0 +1,17 @@
+{
+    "version": "2.0-Beta-2",
+    "configurations": [
+
+
+        {
+            "type": "java",
+            "name": "Launch Tiny Time Tracker",
+            "request": "launch",
+            "mainClass": "tracker.Tracker",
+            "projectName": "tinytimetracker",
+            "classPaths": [
+                "bin/default/classes",
+            ]
+        }
+    ]
+}

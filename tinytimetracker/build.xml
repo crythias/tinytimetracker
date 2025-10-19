@@ -24,6 +24,7 @@
     	<pathelement location="lib/commons-io-2.13.0.jar"/>
     	<pathelement location="lib/log4j-api-2.20.0.jar"/>
     	<pathelement location="lib/log4j-core-2.20.0.jar"/>
+		<pathelement location="src/main/resources"/>
 	</path>
 
 

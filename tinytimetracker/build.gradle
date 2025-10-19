@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2' // test
-    implementation 'org.apache.poi:poi:5.4.1'         // HSSF (.xls)
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2' // test platform launcher    implementation 'org.apache.poi:poi:5.4.1'         // HSSF (.xls)
     implementation 'org.apache.poi:poi-ooxml:5.4.1'   // XSSF (.xlsx), optional
     implementation("commons-io:commons-io:2.13.0")
     implementation("org.apache.logging.log4j:log4j-api:2.20.0")
@@ -54,6 +54,13 @@ tasks.create('runTracker', JavaExec) {
     description = 'Runs the Tiny Time Tracker'
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'tracker.Tracker'
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation"
 }
 
 test {

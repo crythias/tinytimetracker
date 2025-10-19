@@ -1,12 +1,14 @@
-// AutoStartManager is now a stub. WebStart/autostart logic removed for local-only use.
-package tracker;
-
+ package tracker;
+/**
+* AutoStartManager is now a stub. WebStart/autostart logic removed for local-only use.
+*/
 import javax.swing.JCheckBoxMenuItem;
 
-interface AutoStart_duplicate {
+interface AutoStart {
     void autoStart(boolean autoStart);
     JCheckBoxMenuItem getAutoStartCheckBox();
 }
+
 
 public class AutoStartManager implements AutoStart {
     public static AutoStartManager createAutoStartManager() {

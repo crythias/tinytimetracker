@@ -1,7 +1,10 @@
 /*
  * Created on May 31, 2006
- *
+ * Modified on October 19, 2025 - added ability to override messages file from user home directory
+ * 
  * Copyright (c) 2006 iArchives
+ * Contributor: Gerald Young
+ * Copyright 2025 Gerald Young
  */
 package tracker;
 
@@ -18,6 +21,10 @@ public class Messages {
         } 
         catch (MissingResourceException e)
         {
+            String classpath = System.getProperty("java.class.path");
+            System.err.println("Java Class Path: " + classpath);
+     
+            System.err.println("can't find messages file: " + bundleName);
             // now look in the normal place
             getBundle("tracker."+bundleName);
         }
