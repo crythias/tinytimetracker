@@ -7,7 +7,14 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.prefs.Preferences;
 
+import java.awt.Color;
+import javax.swing.border.Border;
+import javax.swing.JComponent;
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.UIManager;
+
+
 
 /**
  * To compile:
@@ -73,10 +80,22 @@ public class Tracker {
         install(autoStartManager);
 
         TimeTracker tracker = new TimeTracker(directory, autoStartManager, prefs);
-        
+        /**
+	 * Border suggestion
+	 *
+	 * @author Gerald Young
+	 */
+
+
+
         // Prevent focus stealing on launch
         tracker.setFocusableWindowState(false);
-        tracker.setVisible(true);
+
+	// tracker.setUndecorated(false);
+
+	Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+	((JComponent) tracker.getContentPane()).setBorder(border);
+	tracker.setVisible(true);
         tracker.setFocusableWindowState(true); // Re-enable focus after showing
 
     }
