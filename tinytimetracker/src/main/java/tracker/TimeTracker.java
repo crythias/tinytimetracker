@@ -1021,7 +1021,8 @@ public class TimeTracker extends JDialog {
          * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
          */
         public void mouseReleased(MouseEvent e) {
-            // pressPoint = null;
+            revalidate();
+            repaint();
         }
         
     }
