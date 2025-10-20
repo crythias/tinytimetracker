@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: GPL-2.0-only -->
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <profiles version="20">
     <profile kind="CodeFormatterProfile" name="JavaConventions" version="20">

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 package tracker;
 /*
  * Created on May 31, 2006

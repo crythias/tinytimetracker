@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
  package tracker;
 /**
 * AutoStartManager is now a stub. WebStart/autostart logic removed for local-only use.
