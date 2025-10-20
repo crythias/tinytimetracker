@@ -1150,8 +1150,8 @@ public class TimeTracker extends JDialog {
         Rectangle bounds = gc.getBounds();
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
     
-        Point loc = getLocation();
-        Dimension size = getSize();
+        Point loc = getLocation(); // Where is the app?
+        Dimension size = getSize(); // How big is it?
     
         int lx = loc.x;
         int ly = loc.y;
@@ -1161,16 +1161,24 @@ public class TimeTracker extends JDialog {
         // Clamp width/height if larger than screen
         int maxWidth = bounds.width - insets.left - insets.right;
         int maxHeight = bounds.height - insets.top - insets.bottom;
+
         if (w > maxWidth) w = maxWidth;
         if (h > maxHeight) h = maxHeight;
+        
         setSize(w, h);
     
-        // Clamp location
-        if (lx < bounds.x + insets.left) lx = bounds.x + insets.left;
-        if (ly < bounds.y + insets.top) ly = bounds.y + insets.top;
-        if (lx + w > bounds.x + bounds.width - insets.right) lx = bounds.x + bounds.width - insets.right - w;
-        if (ly + h > bounds.y + bounds.height - insets.bottom) ly = bounds.y + bounds.height - insets.bottom - h;
+        if (w > maxWidth || h > maxHeight) {
+            w = Math.min(w, maxWidth);
+            h = Math.min(h, maxHeight);
+            setSize(w, h);
+        }
     
+        // Clamp location softly — allow partial drift
+        lx = Math.max(lx, bounds.x + insets.left - w / 2);
+        ly = Math.max(ly, bounds.y + insets.top - h / 2);
+        lx = Math.min(lx, bounds.x + bounds.width - insets.right - w / 2);
+        ly = Math.min(ly, bounds.y + bounds.height - insets.bottom - h / 2);
+
         setLocation(new Point(lx, ly));
     }
 
