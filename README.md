@@ -1,22 +1,81 @@
-This file was created from the CVS export from [TinyTimeTracker](https://sourceforge.net/projects/tinytimetracker/). But, by Russell Black.
-There's no guarantee of it working, secure, or without bugs, but maybe I might be able to resurrect it.
+# TinyTimeTracker (Resurrected)
 
-Nice to meet you and please fork if you feel it's something you can be involved in.
+This project was recovered from a [CVS export of the original TinyTimeTracker](https://sourceforge.net/projects/tinytimetracker/) by Russell Black from 2004 which was rendered non-functional around 2014.
 
-To compile, just run [ant](https://ant.apache.org) against the tinytimetracker (sub)folder. Current targets from original source:
-- ```ant compile```
-- ```ant jar```
-- ```ant clean```
-- ```ant run```
+> ⚠️ No guarantees of functionality, security, or bug-free operation. This is a legacy resurrection effort — proceed with curiosity and caution.
 
-"deploy" and the Java webstart items have been removed and don't work anyway.
+---
 
-This compiles and runs on Java 25. It has not (yet) been tested with Java 8+ (but it should run).
+## 🕒 What It Does
 
-added libraries:
+TinyTimeTracker is a **minimally intrusive floating time tracker** for desktop environments. It:
+
+- Tracks time spent on your current project
+- Logs entries into `.xls` files:
+  - One sheet per day
+  - One workbook per week
+- Runs on **Windows**, **Linux**, and likely any GUI that supports **Java 25**
+
+To stop tracking, simply enter a null project name like `off`.
+
+---
+
+## 💡 Why Use This?
+
+Because it's:
+
+- Lightweight and unobtrusive
+- Easy to run — no setup wizard, no accounts, no cloud
+- Free and open source
+- Surprisingly effective for solo time tracking
+
+---
+
+## 📦 Binaries?
+
+None provided (yet). But you can build it yourself — it's fast and easy.
+
+---
+
+## 🛠️ How to Build and Run
+
+### Option 1: Ant (original method)
+
+```bash
+ant run
 ```
-- commons-io-2.13.0.jar
-- log4j-api-2.20.0.jar
-- log4j-core-2.20.0.jar
-- poi-5.4.1.jar
-  ```
+
+### Option 2: Gradle (modernized)
+
+```bash
+cd tinytimetracker
+./gradlew run &
+```
+
+Output files (your data) will appear in your home directory under:
+
+```
+~/timecards/
+```
+
+---
+
+## 🧹 Notes
+
+- The original Java Web Start and `deploy` targets have been removed — they no longer work.
+- This version compiles and runs on **Java 25**.
+- Compatibility with Java 8+ has not yet been tested.
+
+---
+
+## 🤝 Get Involved
+
+If this project resonates with you, feel free to:
+
+- Fork it
+- File bug reports
+- Suggest improvements
+- Help test on modern Java versions (or a Mac)
+
+This is a living resurrection — and you’re invited to shape its next arc.
+

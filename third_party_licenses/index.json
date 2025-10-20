@@ -1,0 +1,171 @@
+{
+    "dependencies": [
+        {
+            "moduleName": "com.github.virtuald:curvesapi",
+            "moduleUrl": "https://github.com/virtuald/curvesapi",
+            "moduleVersion": "1.08",
+            "moduleLicense": "BSD License",
+            "moduleLicenseUrl": "http://opensource.org/licenses/BSD-3-Clause"
+        },
+        {
+            "moduleName": "com.zaxxer:SparseBitSet",
+            "moduleUrl": "https://github.com/brettwooldridge/SparseBitSet",
+            "moduleVersion": "1.3",
+            "moduleLicense": "The Apache Software License, Version 2.0",
+            "moduleLicenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "commons-codec:commons-codec",
+            "moduleUrl": "https://commons.apache.org/proper/commons-codec/",
+            "moduleVersion": "1.18.0",
+            "moduleLicense": "Apache-2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "commons-io:commons-io",
+            "moduleUrl": "https://commons.apache.org/proper/commons-io/",
+            "moduleVersion": "2.18.0",
+            "moduleLicense": "Apache-2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.commons:commons-collections4",
+            "moduleUrl": "https://commons.apache.org/proper/commons-collections/",
+            "moduleVersion": "4.4",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.commons:commons-compress",
+            "moduleUrl": "https://commons.apache.org/proper/commons-compress/",
+            "moduleVersion": "1.27.1",
+            "moduleLicense": "Apache-2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.commons:commons-lang3",
+            "moduleUrl": "https://commons.apache.org/proper/commons-lang/",
+            "moduleVersion": "3.16.0",
+            "moduleLicense": "Apache-2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.commons:commons-math3",
+            "moduleUrl": "http://commons.apache.org/proper/commons-math/",
+            "moduleVersion": "3.6.1",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.logging.log4j:log4j-api",
+            "moduleVersion": "2.24.3",
+            "moduleLicense": "Apache-2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.logging.log4j:log4j-core",
+            "moduleUrl": "https://www.apache.org/",
+            "moduleVersion": "2.20.0",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.poi:poi",
+            "moduleUrl": "https://poi.apache.org/",
+            "moduleVersion": "5.4.1",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.poi:poi-ooxml",
+            "moduleUrl": "https://poi.apache.org/",
+            "moduleVersion": "5.4.1",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.poi:poi-ooxml-lite",
+            "moduleUrl": "https://poi.apache.org/",
+            "moduleVersion": "5.4.1",
+            "moduleLicense": "Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apache.xmlbeans:xmlbeans",
+            "moduleUrl": "https://xmlbeans.apache.org/",
+            "moduleVersion": "5.3.0",
+            "moduleLicense": "The Apache Software License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.apiguardian:apiguardian-api",
+            "moduleUrl": "https://github.com/apiguardian-team/apiguardian",
+            "moduleVersion": "1.1.2",
+            "moduleLicense": "The Apache License, Version 2.0",
+            "moduleLicenseUrl": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        },
+        {
+            "moduleName": "org.junit.jupiter:junit-jupiter",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "5.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.jupiter:junit-jupiter-api",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "5.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.jupiter:junit-jupiter-engine",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "5.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.jupiter:junit-jupiter-params",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "5.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.platform:junit-platform-commons",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "1.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.platform:junit-platform-engine",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "1.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit.platform:junit-platform-launcher",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "1.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.junit:junit-bom",
+            "moduleUrl": "https://junit.org/junit5/",
+            "moduleVersion": "5.10.2",
+            "moduleLicense": "Eclipse Public License v2.0",
+            "moduleLicenseUrl": "https://www.eclipse.org/legal/epl-v20.html"
+        },
+        {
+            "moduleName": "org.opentest4j:opentest4j",
+            "moduleUrl": "https://github.com/ota4j-team/opentest4j",
+            "moduleVersion": "1.3.0",
+            "moduleLicense": "The Apache License, Version 2.0",
+            "moduleLicenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    ]
+}
