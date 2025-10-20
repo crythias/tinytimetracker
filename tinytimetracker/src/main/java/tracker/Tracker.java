@@ -3,6 +3,7 @@ package tracker;
 import java.io.*;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.prefs.Preferences;
 
 import javax.swing.UIManager;
@@ -32,6 +33,29 @@ public class Tracker {
         this.prefs = prefs;
     }
     
+    /**
+     * Loads version properties from version.properties file.
+     * 
+     * @return Properties object containing version information.
+     */
+    
+     private static Properties loadVersionProperties() {
+        Properties props = new Properties();
+        try (InputStream in = new FileInputStream("version.properties")) {
+            props.load(in);
+        } catch (IOException e) {
+            System.err.println("Could not load version.properties");
+        }
+        return props;
+    }
+
+    /**
+     * Starts the tracker application.
+     * 
+     * @param args
+     * @throws MultipleInstancesException
+     */
+
     void start(String[] args) throws MultipleInstancesException {
         parseArguments(args);
 
@@ -56,6 +80,11 @@ public class Tracker {
 
     }
     
+    /**
+     * Parses command line arguments.
+     * @param args
+     * 
+     */
     void parseArguments(String[] args) {
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
@@ -72,7 +101,9 @@ public class Tracker {
             } else if (arg.equals("-help") || arg.equals("-?")) {
                 usage(); // already prints help and exits
             } else if (arg.equals("-version")) {
-                System.out.println("TinyTimeTracker version 2.0.0");
+                Properties versionProps = loadVersionProperties();
+                String version = versionProps.getProperty("version", "unknown");
+                System.out.println("TinyTimeTracker version " + version);
                 System.exit(0);
             } else {
                 System.out.println("Unrecognized argument " + arg); //$NON-NLS-1$
@@ -85,6 +116,11 @@ public class Tracker {
         }
     }
     
+    /**
+     * Sets up logging to files or console based on user preference.
+     * @param directory The directory where log files will be created.
+     * 
+     */
     void setupLogging(File directory) {
         if (!logToConsole) {
             File stdOutFile = new File(directory, "stdout.log"); //$NON-NLS-1$
@@ -99,7 +135,10 @@ public class Tracker {
     }
 
   
-    
+    /**
+     * Installs the application if not already installed.
+     * @param autoStartManager
+     */
     void install(AutoStart autoStartManager) {
         boolean installed = prefs.getBoolean("installed", false); //$NON-NLS-1$
         if (installed) {
@@ -121,6 +160,9 @@ public class Tracker {
         }
     }
 
+    /**
+     * Prints usage information and exits the application.
+     */
     void usage() {
         System.err.println("Usage: tracker.Tracker [-d <timecard directory>] [-console] [-locale <locale>] [-help|-?] [-version]");
         System.exit(1);

@@ -1,5 +1,5 @@
 {
-    "version": "2.0-Beta-2",
+    "version": "2.0.0-BETA3",
     "configurations": [
 
 
@@ -10,7 +10,7 @@
             "mainClass": "tracker.Tracker",
             "projectName": "tinytimetracker",
             "classPaths": [
-                "bin/default/classes",
+                "${workspaceFolder}/build/classes/java/main",
             ]
         }
     ]

@@ -2,8 +2,14 @@ plugins {
     id 'application'
 }
 
+// def versionProps = new Properties()
+// file("version.properties").withInputStream { stream ->
+//     versionProps.load(stream)
+// }
+
+// version = versionProps.getProperty("version", "0.0.0")
+version = "2.0.0-BETA3"
 group = "org.tinytimetracker"
-version = "2.0-beta-2"
 
 repositories {
     mavenCentral()

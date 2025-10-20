@@ -47,7 +47,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -104,8 +103,8 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
  */
 public class TimeTracker extends JDialog {
     public static long lastTimeWrittenToFile = System.currentTimeMillis();
-    private final ComboBoxModel model;
-    private final JComboBox taskCombo;
+    private final ComboBoxModel<String> model;
+    private final JComboBox<String> taskCombo;
     private final JLabel timeLabel = new JLabel("    "); //$NON-NLS-1$
     private final JLabel extraLabel = new JLabel();
     private Preferences prefs ;
@@ -162,7 +161,7 @@ public class TimeTracker extends JDialog {
             taskArray = new String[] {};
         }
 
-        taskCombo = new JComboBox(taskArray);
+        taskCombo = new JComboBox<String>(taskArray);
         taskCombo.setUI(new MyComboBoxUI());
         model = taskCombo.getModel();
 
@@ -469,8 +468,7 @@ public class TimeTracker extends JDialog {
         }
 
         new Timer().schedule(new TimerTask() {
-            Method m = null;
-            boolean noMethodFound = false;
+           // Method m = null;
             public void run() {
                 // this task pops the window to the top periodically so it stays 
                 // on top of the task bar (which is also an always-on-top window)
@@ -970,11 +968,14 @@ public class TimeTracker extends JDialog {
      */
     private class Mover implements MouseMotionListener, MouseListener {
 
-        private Point pressPoint = null;
         private Point offset;
+        // private Point pressPoint;
 
 
-
+        /**
+         * check if mouse is pressed
+         * @param e the mouse event
+         */
         public void mousePressed(MouseEvent e) {
             Point screen = e.getLocationOnScreen();
             Point window = getLocation();
@@ -1016,7 +1017,7 @@ public class TimeTracker extends JDialog {
          * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
          */
         public void mouseReleased(MouseEvent e) {
-            pressPoint = null;
+            // pressPoint = null;
         }
         
     }
@@ -1029,7 +1030,7 @@ public class TimeTracker extends JDialog {
 
         @Override
         protected ComboPopup createPopup() {
-            return new MyComboPopup(comboBox);
+            return new MyComboPopup((JComboBox) comboBox);
     }
 }
     
