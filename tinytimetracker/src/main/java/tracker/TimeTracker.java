@@ -1022,10 +1022,9 @@ public class TimeTracker extends JDialog {
          */
         public void mouseReleased(MouseEvent e) {
             // sometimes it hides clock when it moves
-            tickNow();
-            repaint();
+            String currentText = timeLabel.getText();
+            setLabel(currentText); // Force redraw
         }
-        
     }
     
     /**
