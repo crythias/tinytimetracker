@@ -1145,24 +1145,33 @@ public class TimeTracker extends JDialog {
     {
         super.pack();
     }
-    
-    private void keepOnScreen()
-    {
-        // set the location, keep it on the screen
-        Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-        Point loc = getLocation();
+    private void keepOnScreen() {
         GraphicsConfiguration gc = getGraphicsConfiguration();
         Rectangle bounds = gc.getBounds();
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
-
+    
+        Point loc = getLocation();
+        Dimension size = getSize();
+    
         int lx = loc.x;
         int ly = loc.y;
-
+        int w = size.width;
+        int h = size.height;
+    
+        // Clamp width/height if larger than screen
+        int maxWidth = bounds.width - insets.left - insets.right;
+        int maxHeight = bounds.height - insets.top - insets.bottom;
+        if (w > maxWidth) w = maxWidth;
+        if (h > maxHeight) h = maxHeight;
+        setSize(w, h);
+    
+        // Clamp location
         if (lx < bounds.x + insets.left) lx = bounds.x + insets.left;
         if (ly < bounds.y + insets.top) ly = bounds.y + insets.top;
-        if (lx > bounds.x + bounds.width - insets.right - getWidth()) lx = bounds.x + bounds.width - insets.right - getWidth();
-        if (ly > bounds.y + bounds.height - insets.bottom - getHeight()) ly = bounds.y + bounds.height - insets.bottom - getHeight();
-
+        if (lx + w > bounds.x + bounds.width - insets.right) lx = bounds.x + bounds.width - insets.right - w;
+        if (ly + h > bounds.y + bounds.height - insets.bottom) ly = bounds.y + bounds.height - insets.bottom - h;
+    
         setLocation(new Point(lx, ly));
     }
+
 }
