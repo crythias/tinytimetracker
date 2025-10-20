@@ -25,8 +25,10 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GraphicsConfiguration;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -85,11 +87,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import javax.swing.text.JTextComponent;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 /**
  * To compile: 
  * 
@@ -98,9 +99,9 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
  * 
  * To run:
  * 
- * "C:\Program Files\Java\jdk1.5.0\bin\javaw.exe" -classpath "c:\bin\Time Tracker\classes_g;c:\bin\Time Tracker\lib\poi-5.4.1.jar" tracker.Tracker 
+ * ant run
  * 
- * @author rblack
+ * @author rblack / updated by Gerald Young
  */
 public class TimeTracker extends JDialog {
     public static long lastTimeWrittenToFile = System.currentTimeMillis();
@@ -1150,26 +1151,18 @@ public class TimeTracker extends JDialog {
         // set the location, keep it on the screen
         Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
         Point loc = getLocation();
+        GraphicsConfiguration gc = getGraphicsConfiguration();
+        Rectangle bounds = gc.getBounds();
+        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
+
         int lx = loc.x;
         int ly = loc.y;
-        
-        Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
-        if (!AutoStartManager.isMac()) 
-        {
-            // don't let it hide behind the insets for macs since macs don't support 
-            // alwaysontop of of menus or docks
-            screenInsets.top = screenInsets.bottom = screenInsets.left = screenInsets.right = 0;
-        }
-        if (lx < screenInsets.left) lx = screenInsets.left;
-        if (ly < screenInsets.top) ly = screenInsets.top;
-        if (lx > ss.width - screenInsets.right - getWidth()) lx = ss.width - screenInsets.right - getWidth();
-        if (ly > ss.height - screenInsets.bottom - getHeight() ) ly = ss.height - screenInsets.bottom - getHeight();
-        /*
-        if (lx < 0) lx = 0;
-        if (ly < 0) ly = 0;
-        if (lx + getWidth() > ss.width) lx = ss.width - getWidth();
-        if (ly + getHeight() > ss.height) ly = ss.height- getHeight();
-        */
+
+        if (lx < bounds.x + insets.left) lx = bounds.x + insets.left;
+        if (ly < bounds.y + insets.top) ly = bounds.y + insets.top;
+        if (lx > bounds.x + bounds.width - insets.right - getWidth()) lx = bounds.x + bounds.width - insets.right - getWidth();
+        if (ly > bounds.y + bounds.height - insets.bottom - getHeight()) ly = bounds.y + bounds.height - insets.bottom - getHeight();
+
         setLocation(new Point(lx, ly));
     }
 }

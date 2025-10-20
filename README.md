@@ -42,6 +42,7 @@ None provided (yet). But you can build it yourself — it's fast and easy.
 ### Option 1: Ant (original method)
 
 ```bash
+cd tinytimetracker
 ant run
 ```
 

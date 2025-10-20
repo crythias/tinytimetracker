@@ -11,9 +11,5 @@ Git hygiene supersedes legacy CVS scaffolding.
 
 This project uses the [Gradle License Report Plugin](https://github.com/jk1/Gradle-License-Report) to audit third-party dependencies.
 
-Generated reports:
-- `build/reports/licenses/licenses.html`: Human-readable summary
-- `build/reports/licenses/licenses.json`: Machine-readable audit trail
-
-All third-party libraries are used under their respective open-source licenses. See `licenses/` for details.
+All third-party libraries are used under their respective open-source licenses. See `third_party_licenses/` for details.
 
