@@ -1,3 +1,4 @@
+package tracker;
 /*
  * Created on May 31, 2006
  * Modified on October 19, 2025 - added ability to override messages file from user home directory
@@ -6,7 +7,7 @@
  * Contributor: Gerald Young
  * Copyright 2025 Gerald Young
  */
-package tracker;
+
 
 import java.net.*;
 import java.util.*;
@@ -32,6 +33,7 @@ public class Messages {
 
     private static void getBundle(String bundleName) throws MissingResourceException {
         try {
+            // TODO: new URLClassLoader is known to be deprecated after Java 20 but left for backwards compatibility
             ClassLoader extra = new URLClassLoader(new URL[]{new URL("file:" + System.getProperty("user.home") + "/timecards/")}, Messages.class.getClassLoader());
             RESOURCE_BUNDLE = ResourceBundle.getBundle(bundleName, Locale.getDefault(), extra);
             System.out.println("Using the messages file: " + bundleName);

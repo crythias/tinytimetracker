@@ -1,5 +1,9 @@
 package tracker;
 
+/**
+ * Represents a row in the task spreadsheet.
+ */
+
 import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;

@@ -5,6 +5,16 @@
  * 
  * Updated by Gerald Young 2025
  * 
+ *  This class implements a tiny time tracker that sits on the desktop and allows quick
+ * time tracking. Mouse over the time to see a tooltip, double-click to open the timecard,
+ * right-click to see the context menu.
+ * 
+ * To compile:
+ * ant compile
+ * To run:
+ * ant run
+ * or
+ * java -classpath classes;lib\poi-5.4.1.jar tracker.Tracker
  */
 package tracker;
 
@@ -960,24 +970,22 @@ public class TimeTracker extends JDialog {
      */
     private class Mover implements MouseMotionListener, MouseListener {
 
-        private Point pressPoint = null;;
-        
-        /* (non-Javadoc)
-         * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
-         */
+        private Point pressPoint = null;
+        private Point offset;
+
+
+
+        public void mousePressed(MouseEvent e) {
+            Point screen = e.getLocationOnScreen();
+            Point window = getLocation();
+            offset = new Point(screen.x - window.x, screen.y - window.y);
+        }
+
         public void mouseDragged(MouseEvent e) {
-            if (pressPoint == null) return;
-            Point los = getLocationOnScreen();
-            Point dragPoint = e.getPoint();
-            dragPoint.translate(los.x, los.y);
-            int dx = dragPoint.x - pressPoint.x;
-            int dy = dragPoint.y - pressPoint.y;
-            Point newLocation = new Point(los.x + dx, los.y + dy);
-            setLocation(newLocation);
-            prefs.putInt("window.x", newLocation.x); //$NON-NLS-1$
-            prefs.putInt("window.y", newLocation.y); //$NON-NLS-1$
-            
-            pressPoint = dragPoint;
+            Point screen = e.getLocationOnScreen();
+            setLocation(screen.x - offset.x, screen.y - offset.y);
+            prefs.putInt("window.x", getLocation().x);
+            prefs.putInt("window.y", getLocation().y);
         }
 
         /* (non-Javadoc)
@@ -1002,16 +1010,6 @@ public class TimeTracker extends JDialog {
          * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
          */
         public void mouseExited(MouseEvent e) {
-        }
-
-        /* (non-Javadoc)
-         * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-         */
-        public void mousePressed(MouseEvent e) {
-            pressPoint = new Point(e.getPoint());
-            Point los = getLocationOnScreen();
-            pressPoint.translate(los.x, los.y);
-            timeLabel.requestFocus();
         }
 
         /* (non-Javadoc)

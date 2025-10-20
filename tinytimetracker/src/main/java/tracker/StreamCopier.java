@@ -2,6 +2,9 @@
  * Created on Dec 8, 2004
  *
  * Copyright (c) 2004 iArchives
+ * 
+ * Stream Copier - copies data from an InputStream to an OutputStream
+ * in a separate thread.
  */
 package tracker;
 

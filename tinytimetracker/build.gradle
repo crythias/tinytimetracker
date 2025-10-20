@@ -24,11 +24,11 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs = ['src']
+            srcDirs = ['src/main/java']
             exclude '**/*Test.java'
         }
         resources {
-            srcDirs = ['src']
+            srcDirs = ['src/main/resources']
             include '**/*.ico', '**/*.gif', '**/*.jpg', '**/*.png', '**/*.properties', '**/log4j2.xml'
         }
     }
@@ -44,9 +44,6 @@ tasks.jar {
                 'Main-Class': 'tracker.Tracker'
         )
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
 }
 
 tasks.create('runTracker', JavaExec) {
@@ -60,8 +57,9 @@ tasks.withType(Jar).configureEach {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << "-Xlint:deprecation"
+    options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
 }
+
 
 test {
     useJUnitPlatform()

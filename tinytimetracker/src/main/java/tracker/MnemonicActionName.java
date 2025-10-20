@@ -1,5 +1,8 @@
 package tracker;
 
+/**
+ * Represents an action name with an associated mnemonic.
+ */
 public class MnemonicActionName {
     final String actionMessage;
     final Integer actionMnemonic;

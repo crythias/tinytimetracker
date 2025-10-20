@@ -1,5 +1,8 @@
 package tracker;
 
+/**
+ * Represents a week with localized day names and first day of the week.
+ */
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;

@@ -6,6 +6,7 @@ import java.nio.channels.FileLock;
 public class MultipleInstancesLock {
     private File lockFile;
     private FileLock multipleInstanceLock;
+    private FileOutputStream fos;
     
     public MultipleInstancesLock(File lockFile) {
         this.lockFile = lockFile;
@@ -22,7 +23,7 @@ public class MultipleInstancesLock {
      */
     public void preventMultipleInstances() throws MultipleInstancesException {
         try {
-            FileOutputStream fos = new FileOutputStream(lockFile);
+            FileOutputStream fos = new FileOutputStream(lockFile); // create the file if it doesn't exist
             multipleInstanceLock = fos.getChannel().tryLock();
         } catch (Exception e) {
             final String message = "Multiple instances must be running because we got an exception trying to acquire a lock on "+lockFile.toString();
@@ -51,6 +52,9 @@ public class MultipleInstancesLock {
                 // after the release and before the delete, but I'll accept that risk.
                 multipleInstanceLock.channel().close();
                 lockFile.delete();
+            }
+            if (fos != null) { // TODO: Close fos somewhere better
+                fos.close();
             }
         } catch (IOException ignore) {
             ignore.printStackTrace();

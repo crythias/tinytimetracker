@@ -1,5 +1,9 @@
 package tracker;
 
+/**
+ * Manages the timecard spreadsheet.
+ */
+
 import java.io.*;
 import java.util.*;
 
