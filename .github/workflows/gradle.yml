@@ -60,6 +60,7 @@ jobs:
       with:
         java-version: '25'
         distribution: 'temurin'
+        working-directory: tinytimetracker
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
