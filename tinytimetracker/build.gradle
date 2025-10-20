@@ -4,6 +4,8 @@ import com.github.jk1.license.render.InventoryHtmlReportRenderer
 import com.github.jk1.license.importer.XmlReportImporter
 import com.github.jk1.license.filter.LicenseBundleNormalizer
 
+// SPDX-License-Identifier: GPL-2.0-only
+
 plugins {
     id 'java'
     id 'application'

@@ -1,5 +1,5 @@
-<!-- SPDX-License-Identifier: GPL-2.0-only -->
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: GPL-2.0-only -->
 <profiles version="20">
     <profile kind="CodeFormatterProfile" name="JavaConventions" version="20">
         <setting id="org.eclipse.jdt.core.formatter.insert_space_after_ellipsis" value="insert"/>
