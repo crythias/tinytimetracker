@@ -26,6 +26,8 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -1145,41 +1147,45 @@ public class TimeTracker extends JDialog {
     {
         super.pack();
     }
-    private void keepOnScreen() {
-        GraphicsConfiguration gc = getGraphicsConfiguration();
-        Rectangle bounds = gc.getBounds();
-        Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
-    
-        Point loc = getLocation(); // Where is the app?
-        Dimension size = getSize(); // How big is it?
-    
-        int lx = loc.x;
-        int ly = loc.y;
-        int w = size.width;
-        int h = size.height;
-    
-        // Clamp width/height if larger than screen
-        int maxWidth = bounds.width - insets.left - insets.right;
-        int maxHeight = bounds.height - insets.top - insets.bottom;
 
-        if (w > maxWidth) w = maxWidth;
-        if (h > maxHeight) h = maxHeight;
-        
-        setSize(w, h);
+    private void keepOnScreen() {
+        Point loc = getLocation();
+        Dimension size = getSize();
     
-        if (w > maxWidth || h > maxHeight) {
-            w = Math.min(w, maxWidth);
-            h = Math.min(h, maxHeight);
-            setSize(w, h);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] devices = ge.getScreenDevices();
+    
+        boolean onScreen = false;
+    
+        for (GraphicsDevice device : devices) {
+            GraphicsConfiguration gc = device.getDefaultConfiguration();
+            Rectangle bounds = gc.getBounds();
+            Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
+    
+            Rectangle usable = new Rectangle(
+                bounds.x + insets.left,
+                bounds.y + insets.top,
+                bounds.width - insets.left - insets.right,
+                bounds.height - insets.top - insets.bottom
+            );
+    
+            if (usable.intersects(new Rectangle(loc, size))) {
+                onScreen = true;
+                break;
+            }
         }
     
-        // Clamp location softly — allow partial drift
-        lx = Math.max(lx, bounds.x + insets.left - w / 2);
-        ly = Math.max(ly, bounds.y + insets.top - h / 2);
-        lx = Math.min(lx, bounds.x + bounds.width - insets.right - w / 2);
-        ly = Math.min(ly, bounds.y + bounds.height - insets.bottom - h / 2);
-
-        setLocation(new Point(lx, ly));
+        if (!onScreen) {
+            // Fallback: move to center of primary screen
+            GraphicsConfiguration primary = ge.getDefaultScreenDevice().getDefaultConfiguration();
+            Rectangle bounds = primary.getBounds();
+            Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(primary);
+    
+            int x = bounds.x + insets.left + (bounds.width - insets.left - insets.right - size.width) / 2;
+            int y = bounds.y + insets.top + (bounds.height - insets.top - insets.bottom - size.height) / 2;
+    
+            setLocation(x, y);
+        }
     }
 
 }
