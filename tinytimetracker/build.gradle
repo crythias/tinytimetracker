@@ -37,13 +37,12 @@ task printResolvedFiles {
         }
     }
 }
-// def versionProps = new Properties()
-// file("version.properties").withInputStream { stream ->
-//     versionProps.load(stream)
-// }
+def versionProps = new Properties()
+file("../VERSION").withInputStream { stream ->
+  versionProps.load(stream)
+}
 
-// version = versionProps.getProperty("version", "0.0.0")
-version = "2.0.0-BETA3"
+version = versionProps.getProperty("version", "0.0.0")
 group = "org.tinytimetracker"
 
 repositories {
@@ -56,7 +55,7 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2' // test
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2' // test platform launcher    implementation 'org.apache.poi:poi:5.4.1'         // HSSF (.xls)
-    implementation 'org.apache.poi:poi-ooxml:5.4.1'   // XSSF (.xlsx), optional
+    implementation("org.apache.poi:poi:5.4.1")
     implementation("commons-io:commons-io:2.13.0")
     implementation("org.apache.logging.log4j:log4j-api:2.20.0")
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
@@ -87,9 +86,20 @@ tasks.jar {
     }
 }
 
+task beforeCommit {
+    group = 'verification'
+    description = 'Clean build, clean again, and update licenses before commit. This is to not distribute binaries and confirm a good build.'
+
+    doLast {
+        exec {
+            commandLine './gradlew', 'clean', 'build', 'clean', 'updateLicenses'
+        }
+    }
+}
+
 tasks.create('runTracker', JavaExec) {
     group = 'application'
-    description = 'Runs the Tiny Time Tracker'
+    description = 'Runs TinyTimeTracker'
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'tracker.Tracker'
 }
