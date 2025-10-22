@@ -13,7 +13,7 @@ plugins {
 }
 
 licenseReport {
-    outputDir = "$buildDir/reports/licenses"
+    outputDir = "../third_party_licenses"
     renderers = [
         new JsonReportRenderer(),
         new InventoryHtmlReportRenderer('license-report.html', 'Backend')
