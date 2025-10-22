@@ -20,6 +20,7 @@
 package tracker;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -70,6 +71,7 @@ import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -327,6 +329,17 @@ public class TimeTracker extends JDialog {
         
         mainPopup.add(firstDayOfWeekMenu);
 
+	mainPopup.add(new AbstractAction("Choose Color...") {
+            public void actionPerformed(ActionEvent e) {
+		Color currentColor = Color.white;
+                Color chosen = JColorChooser.showDialog(TimeTracker.this, "Pick a Color", currentColor);
+                if (chosen != null) {
+                    getContentPane().setBackground(chosen);
+                    // prefManager.setColor("uiColor", chosen);
+                }
+            }
+        });
+        
         name = new MnemonicActionName("Tracker.Exit"); //$NON-NLS-1$
         Action exitAction = new AbstractAction(name.actionMessage) { 
             public void actionPerformed(ActionEvent e) {
@@ -585,6 +598,8 @@ public class TimeTracker extends JDialog {
                 TimecardSpreadsheet timecard = new TimecardSpreadsheet(getWeekFile(System.currentTimeMillis()), System.currentTimeMillis(), week);
                 boolean[] beep = new boolean[1];
                 TaskRow otherAffectedTask = timecard.moveLastSwitch(minutes * 60, beep);
+		TaskRow currentTask = timecard.getCurrentTaskRow();
+
                 if (beep[0]) {
                     beep();
                 }
@@ -592,7 +607,8 @@ public class TimeTracker extends JDialog {
                     long currentTaskDailyTotal = timecard.save();
                     
                     if (otherAffectedTask != null) {
-                        setExtraText(otherAffectedTask.getTask() + ": " +  //$NON-NLS-1$
+                        setExtraText("(" + formatTime(Math.round(currentTask.getDurationMillis() / 1000f)) +")     " +
+					otherAffectedTask.getTask() + ": " +  //$NON-NLS-1$
                                 formatTime(Math.round(otherAffectedTask.getDurationMillis() / 1000f)));
                     }
                     showTime(currentTaskDailyTotal);
@@ -1131,7 +1147,7 @@ public class TimeTracker extends JDialog {
     
     private void setExtraText(String text) {
         hideExtraTextMillis = System.currentTimeMillis() + 5000;
-        extraLabel.setText("     " + text + " "); //$NON-NLS-1$ //$NON-NLS-2$
+        extraLabel.setText(" " + text + " "); //$NON-NLS-1$ //$NON-NLS-2$
         extraLabel.setVisible(true);
     }
     

@@ -1,0 +1,87 @@
+package tracker;
+
+import java.util.prefs.Preferences;
+
+/**
+ * Centralized preference manager for TinyTimeTracker.
+ * Handles user settings, installation flags, and session metadata.
+ *
+ * @author Gerald Young
+ */
+public class PreferenceManager {
+    private final Preferences prefs;
+
+    public PreferenceManager(Class<?> contextClass) {
+        this.prefs = Preferences.userNodeForPackage(contextClass);
+    }
+
+    public boolean isInstalled() {
+        return prefs.getBoolean("installed", false);
+    }
+
+    public void markInstalled() {
+        prefs.putBoolean("installed", true);
+    }
+
+    public int getFirstDayOfWeek() {
+        return prefs.getInt("firstDayOfWeek", -1);
+    }
+
+    public void setFirstDayOfWeek(int day) {
+        prefs.putInt("firstDayOfWeek", day);
+    }
+
+    public String getLastUsedDir() {
+        return prefs.get("lastUsedDir", System.getProperty("user.home") + "/timecards");
+    }
+
+    public void setLastUsedDir(String path) {
+        prefs.put("lastUsedDir", path);
+    }
+
+    public void setLocale(String localeCode) {
+        prefs.put("locale", localeCode);
+    }
+
+    public String getLocale() {
+        return prefs.get("locale", "en_US");
+    }
+
+    public void setColor(Color){
+	    prefs.put("color", color);
+    }
+
+    public void clearAll() {
+        try {
+            prefs.clear();
+        } catch (Exception e) {
+            System.err.println("Failed to clear preferences: " + e.getMessage());
+        }
+    }
+
+    public void exportToFile(String path) {
+        try (PrintWriter writer = new PrintWriter(path)) {
+            for (String key : new String[] {
+                "installed", "firstDayOfWeek", "lastUsedDir", "locale"
+            }) {
+                writer.println(key + "=" + prefs.get(key, ""));
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to export preferences: " + e.getMessage());
+        }
+    }
+
+    public void importFromFile(String path) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("=", 2);
+                if (parts.length == 2) prefs.put(parts[0], parts[1]);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to import preferences: " + e.getMessage());
+        }
+    }
+
+}
+

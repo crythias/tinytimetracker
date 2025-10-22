@@ -237,6 +237,16 @@ public class TimecardSpreadsheet {
 
     /**
      *
+     * to get the current task as object for time 
+     * @author Gerald Young
+     */
+
+    public TaskRow getCurrentTaskRow() {
+	    return lastTaskRow;
+    }
+
+    /**
+     *
      * @param seconds
      * @param beep This is an "out" parameter.  Pass in a an array of length 1, and this
      * method will set beep[0] = true if the operation was unsuccessful.
