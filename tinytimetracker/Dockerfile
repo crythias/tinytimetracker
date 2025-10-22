@@ -7,6 +7,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y libx11-6 libxext6
 # Create app directory
 WORKDIR /app
 
+# *** NOTE: ```./gradlew build``` should be run prior to making the Docker Image
+RUN echo "***NOTE*** you should have ./gradelaw build before running this so it can be available in the docker image."
+
 # Copy your JAR
 COPY build/distributions/tinytimetracker-*.tar /app/
 RUN tar -xf /app/tinytimetracker-*.tar -C /app --strip-components=1

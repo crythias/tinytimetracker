@@ -13,3 +13,8 @@ This project uses the [Gradle License Report Plugin](https://github.com/jk1/Grad
 
 All third-party libraries are used under their respective open-source licenses. See `third_party_licenses/` for details.
 
+## Hygiene Pass: IDE and Build Cache Cleanup
+- Removed `.gradle/` from version control; now ignored via `.gitignore`
+- Preserved local state for reproducibility
+- Dockerfile changes retained
+

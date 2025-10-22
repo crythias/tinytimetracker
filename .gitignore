@@ -1,18 +1,35 @@
 # Translated from legacy .cvsignore
 .settings/
 bin/
-classes/
-classes_g/
+classes*/
 
 # Build artifacts
 dist/
-classes/
 
 # Eclipse and IDE metadata
 .classpath
 .project
+.vscode/
+.gradle/
 
 # Legacy RCS metadata
 *.v
 
-fileHashes.lock
+# Gradle build artifacts
+build/
+!gradle-wrapper.jar
+
+# Logs and lockfiles
+*.log
+*.lock
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Git directory state
+*.orig
+*.rej
+
